@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sementes Diárias — Kit de Bênçãos Bíblicas para Família</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <!-- SEO + Social -->
   <meta name="description" content="Sementes Diárias: 100 cards de bênçãos, caixinha para imprimir e Guia da Mãe Intencional. Um momento de 5 minutos por dia para transformar a atmosfera do lar." />
   <meta name="author" content="Sementes Diárias" />
   <meta name="theme-color" content="#15803d" />
@@ -24,23 +23,22 @@
   <meta property="og:image" content="https://i.imgur.com/lXYk2l2.jpeg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Sementes Diárias — Kit de Bênçãos Bíblicas para Família" />
-  <meta name="twitter:description" content="100 cards de bênçãos + caixinha para imprimir + guia prático. 5 minutos por dia, um legado para a família." />
-  <meta name="twitter:image" content="https://i.imgur.com/lXYk2l2.jpeg" />
+  <meta property="twitter:description" content="100 cards de bênçãos + caixinha para imprimir + guia prático. 5 minutos por dia, um legado para a família." />
+  <meta property="twitter:image" content="https://i.imgur.com/lXYk2l2.jpeg" />
 
-  <!-- Favicon -->
   <link rel="icon" href="https://i.imgur.com/5c5PkPq.png" />
 
   <style>
     :root{
-      --brand:#15803d; /* verde principal */
-      --brand2:#16a34a; /* verde claro */
-      --cream:#fff7ed;  /* fundo creme */
-      --purple:#a78bfa; /* roxo claro cartões */
-      --orange:#f59e0b; /* laranja ícones/realces */
+      --brand:#15803d;
+      --brand2:#16a34a;
+      --cream:#fff7ed;
+      --purple:#a78bfa;
+      --orange:#f59e0b;
       --gradient:linear-gradient(90deg,#0ea55a 0%, #0ea5a3 50%, #f59e0b 100%);
     }
     html{scroll-behavior:smooth}
-    body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--cream);color:#0f172a}
+    body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--cream);color:#0f172a; overflow-x: hidden;}
     .container{max-width:1120px}
     .card{box-shadow:0 20px 35px rgba(2,6,23,.08)}
     .soft{box-shadow:0 10px 24px rgba(2,6,23,.08)}
@@ -56,19 +54,62 @@
     .price-grad{background:linear-gradient(180deg,#facc15 0%,#f59e0b 30%,#16a34a 100%)}
     .footer-grad{background:#0b1020}
 
-    /* CTA fixo mobile */
+    /* Estilos para o Card Interativo */
+    .flip-card-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 4rem;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .flip-card {
+      background-color: transparent;
+      width: 280px;
+      height: 400px;
+      perspective: 1000px; /* Efeito de profundidade 3D */
+      cursor: pointer;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+    .flip-card.is-flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden; /* Safari */
+      backface-visibility: hidden;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px rgba(2,6,23,.1);
+      overflow: hidden;
+    }
+    .flip-card-back {
+      transform: rotateY(180deg);
+    }
+
     @media (max-width: 767px){
       .cta-mobile {
         position: fixed; left: 12px; right: 12px; bottom: 12px;
         z-index: 60; border-radius: 14px;
         box-shadow: 0 12px 28px rgba(0,0,0,.18);
       }
-      body { padding-bottom: 72px; } /* espaço pro botão não cobrir conteúdo */
+      body { padding-bottom: 72px; }
+      .flip-card { width: 240px; height: 343px; }
     }
   </style>
 </head>
 <body>
-  <!-- Top Bar -->
   <div class="w-full text-[13px] text-emerald-900 bg-emerald-50 border-b border-emerald-100">
     <div class="container mx-auto px-4 py-2 flex items-center gap-2">
       <span class="inline-flex items-center gap-2">
@@ -78,7 +119,6 @@
     </div>
   </div>
 
-  <!-- Header -->
   <header class="w-full sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-zinc-100">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
@@ -91,61 +131,52 @@
         <a href="#faq" class="hover:text-[var(--brand)]">Perguntas</a>
         <a href="#garantia" class="hover:text-[var(--brand)]">Garantia</a>
       </nav>
-      <!-- BOTÃO VERDE 1 -->
       <a href="https://pay.kiwify.com.br/vem2DJn" target="_blank" rel="noopener" aria-label="Ir para a oferta" class="px-4 py-2 rounded-xl bg-[var(--brand)] text-white text-sm font-semibold soft">
         🌱 Começar agora
       </a>
     </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="container mx-auto px-4 pt-10 md:pt-16 pb-8 md:pb-14 grid md:grid-cols-2 gap-8 items-center">
       <div>
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-[1.05] text-zinc-900">
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-[1.05] text-zinc-900" data-aos="fade-down">
           <span class="block text-emerald-700">SEMENTES</span>
           <span class="block text-[var(--orange)]">DIÁRIAS</span>
         </h1>
-        <p class="mt-5 text-zinc-700 leading-relaxed">
+        <p class="mt-5 text-zinc-700 leading-relaxed" data-aos="fade-right" data-aos-delay="200">
           Todo dia, uma bênção. Todo ensino, um momento. Todo momento, um legado.
         </p>
-
-        <div class="quote mt-5 bg-white/95 border border-zinc-100 rounded-2xl p-4">
+        <div class="quote mt-5 bg-white/95 border border-zinc-100 rounded-2xl p-4" data-aos="fade-up" data-aos-delay="300">
           <div class="text-[13px] text-zinc-600">
             "Mãe, hoje eu tirei o cartão de  <span class="font-semibold text-zinc-800">Perdão</span>...
             e lembrei que Deus me perdoa sempre.”
           </div>
           <div class="text-[12px] text-zinc-500 mt-1">— frase real enviada por uma mãezinha</div>
         </div>
-
-        <div class="mt-6 flex flex-wrap gap-3">
-          <!-- BOTÃO VERDE 2 -->
+        <div class="mt-6 flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="400">
           <a href="https://pay.kiwify.com.br/vem2DJn" target="_blank" rel="noopener" aria-label="Ir para a oferta" class="px-5 py-3 rounded-xl bg-[var(--brand)] text-white font-semibold soft">
             🌱 Começar agora
           </a>
         </div>
-
-        <div class="mt-4 flex items-center gap-4 text-sm text-zinc-600">
+        <div class="mt-4 flex items-center gap-4 text-sm text-zinc-600" data-aos="fade-up" data-aos-delay="500">
           <div class="flex -space-x-2">
             <img loading="lazy" class="w-8 h-8 rounded-full border-2 border-white" src="https://i.imgur.com/5c5PkPq.png" alt="Foto de assinante 1"/>
             <img loading="lazy" class="w-8 h-8 rounded-full border-2 border-white" src="https://i.imgur.com/EmDogNU.png" alt="Foto de assinante 2"/>
             <img loading="lazy" class="w-8 h-8 rounded-full border-2 border-white" src="https://i.imgur.com/qzy2KVS.png" alt="Foto de assinante 3"/>
           </div>
-          <span>Mais de <strong>1.200 famílias</strong> já praticam as sementes diárias</span>
+          <span id="counter-container">Mais de <strong><span id="counter">0</span> famílias</strong> já praticam as sementes diárias</span>
         </div>
       </div>
-
-      <!-- Imagem lateral (desktop) -->
-      <div class="relative hidden md:block">
+      <div class="relative hidden md:block" data-aos="zoom-in" data-aos-delay="200">
         <img src="https://i.imgur.com/lXYk2l2.jpeg" alt="Livro com luz"
              class="rounded-3xl w-full h-[520px] object-cover card border border-zinc-100"/>
       </div>
     </div>
   </section>
 
-  <!-- Vídeo para MOBILE (abaixo do herói) -->
   <section class="md:hidden px-4 mt-6" aria-label="Vídeo explicativo Sementes Diárias">
-    <div class="rounded-2xl overflow-hidden soft">
+    <div class="rounded-2xl overflow-hidden soft" data-aos="fade-up">
       <div class="relative pb-[177.77%] h-0">
         <iframe
           src="https://player.vimeo.com/video/1120238082?title=0&byline=0&portrait=0&muted=1&autoplay=1&loop=1&autopause=0&dnt=1"
@@ -158,10 +189,9 @@
     </div>
   </section>
 
-  <!-- Bloco: Não é um card... -->
   <section id="conteudo" class="py-10">
     <div class="container mx-auto px-4">
-      <div class="flex items-start gap-3 max-w-3xl mx-auto">
+      <div class="flex items-start gap-3 max-w-3xl mx-auto" data-aos="fade-up">
         <div class="mt-1 text-xl">🟡</div>
         <div>
           <h3 class="text-lg md:text-xl font-semibold">Não é só um card. É um momento sagrado de conexão.</h3>
@@ -170,44 +200,105 @@
           </p>
         </div>
       </div>
-
       <div class="grid md:grid-cols-3 gap-6 mt-8">
-        <div class="p-6 rounded-2xl bg-white border border-zinc-100 card">
+        <div class="p-6 rounded-2xl bg-white border border-zinc-100 card" data-aos="fade-up" data-aos-delay="100">
           <img loading="lazy" class="w-full h-40 object-cover rounded-xl" src="https://i.imgur.com/H7lg5nM.png" alt="Caixinha Encantadora"/>
           <h4 class="mt-4 font-semibold">Caixinha Encantadora</h4>
           <p class="text-sm text-zinc-600 mt-1">Modelo para imprimir e montar — cabe certinho no criado-mudo.</p>
         </div>
-        <div class="p-6 rounded-2xl bg-white border border-zinc-100 card">
+        <div class="p-6 rounded-2xl bg-white border border-zinc-100 card" data-aos="fade-up" data-aos-delay="200">
           <img loading="lazy" class="w-full h-40 object-cover rounded-xl" src="https://i.imgur.com/44i8RB6.png" alt="100 Cards de Bênçãos"/>
           <h4 class="mt-4 font-semibold">100 Cards de Bênçãos</h4>
           <p class="text-sm text-zinc-600 mt-1">Orações curtas e versículos — 1 por dia ao longo de mais de 3 meses.</p>
         </div>
-        <div class="p-6 rounded-2xl bg-white border border-zinc-100 card">
+        <div class="p-6 rounded-2xl bg-white border border-zinc-100 card" data-aos="fade-up" data-aos-delay="300">
           <img loading="lazy" class="w-full h-40 object-cover rounded-xl" src="https://i.imgur.com/v0O7iz6.png" alt="Guia da Mãe Intencional"/>
           <h4 class="mt-4 font-semibold">Guia da Mãe Intencional</h4>
           <p class="text-sm text-zinc-600 mt-1">Atalhos práticos para conduzir o momento com leveza e propósito.</p>
         </div>
       </div>
+      
+      <div class="flip-card-container" data-aos="fade-up">
+        <h4 class="text-xl font-bold text-center text-zinc-800">Experimente um card na prática</h4>
+        <p class="text-zinc-600 text-center max-w-md mx-auto">Clique no card abaixo para virar e ver como é simples e profundo o conteúdo que preparamos para sua família.</p>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="https://i.imgur.com/83383E6.png" alt="Frente do card de exemplo" class="w-full h-full object-cover">
+            </div>
+            <div class="flip-card-back">
+              <img src="https://i.imgur.com/M6Lg2bB.png" alt="Verso do card de exemplo" class="w-full h-full object-cover">
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <!-- faixa o que recebe hoje -->
-      <div class="mt-6 bg-white border border-zinc-100 rounded-2xl p-4 soft flex flex-col md:flex-row items-center justify-between gap-3">
-        <div class="flex items-center gap-2 text-sm"><span>🎁</span><span class="font-medium">Caixinha Encantadora</span><span class="text-zinc-500">(PDF para imprimir)</span></div>
-        <div class="flex items-center gap-2 text-sm"><span>📜</span><span class="font-medium">100 Cards de Bênçãos</span><span class="text-zinc-500">em alta resolução</span></div>
-        <div class="flex items-center gap-2 text-sm"><span>📘</span><span class="font-medium">Guia da Mãe</span><span class="text-zinc-500">com roteiro diário</span></div>
+    </div>
+  </section>
+
+  <section id="para-quem" class="py-16 bg-emerald-50/50">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+        <div class="text-3xl">🎯</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold mt-2">Este kit foi desenhado para sua família?</h2>
+        <p class="text-zinc-600 mt-1">Criamos as Sementes Diárias com muito carinho, pensando especialmente em famílias que:</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 mt-8">
+        <div class="p-6 text-center rounded-2xl bg-white border border-zinc-100 card" data-aos="fade-up" data-aos-delay="100">
+          <div class="text-3xl">⏰</div>
+          <h4 class="mt-2 font-semibold">Buscam conexão na correria</h4>
+          <p class="text-sm text-zinc-600 mt-1">Para pais que têm apenas 5 minutinhos no dia, mas desejam que esse tempo seja intencional, profundo e transformador para a família.</p>
+        </div>
+        <div class="p-6 text-center rounded-2xl bg-white border border-zinc-100 card" data-aos="fade-up" data-aos-delay="200">
+          <div class="text-3xl">🌱</div>
+          <h4 class="mt-2 font-semibold">Querem plantar valores duradouros</h4>
+          <p class="text-sm text-zinc-600 mt-1">Para famílias que desejam ensinar sobre fé, perdão e gratidão de um jeito simples, lúdico e que as crianças realmente amam participar.</p>
+        </div>
+        <div class="p-6 text-center rounded-2xl bg-white border border-zinc-100 card" data-aos="fade-up" data-aos-delay="300">
+          <div class="text-3xl">✨</div>
+          <h4 class="mt-2 font-semibold">Sentem dificuldade com a constância</h4>
+          <p class="text-sm text-zinc-600 mt-1">Para quem já tentou criar uma rotina de devocional antes, mas precisa de um material pronto, fácil e que engaje os filhos sem esforço.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="galeria-real" class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+        <div class="text-3xl">📸</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold mt-2">Sementes florescendo em lares reais</h2>
+        <p class="text-zinc-600 mt-1">Momentos de conexão e fé enviados com carinho por nossas famílias.</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+        <div class="rounded-2xl overflow-hidden card" data-aos="fade-up">
+          <img loading="lazy" src="https://i.imgur.com/wO5d42x.jpeg" alt="Mãe e filho lendo os cards" class="w-full h-full object-cover aspect-[3/4]">
+        </div>
+        <div class="rounded-2xl overflow-hidden card" data-aos="fade-up" data-aos-delay="100">
+          <img loading="lazy" src="https://i.imgur.com/xIuB1nQ.jpeg" alt="Criança segurando um card" class="w-full h-full object-cover aspect-[3/4]">
+        </div>
+        <div class="rounded-2xl overflow-hidden card col-span-2" data-aos="fade-up" data-aos-delay="200">
+          <img loading="lazy" src="https://i.imgur.com/8aM5wCE.jpeg" alt="Família feliz usando o kit" class="w-full h-full object-cover">
+        </div>
+        <div class="rounded-2xl overflow-hidden card" data-aos="fade-up" data-aos-delay="300">
+          <img loading="lazy" src="https://i.imgur.com/x9z375K.jpeg" alt="Caixinha do Sementes Diárias na mesa" class="w-full h-full object-cover aspect-[3/4]">
+        </div>
+        <div class="rounded-2xl overflow-hidden card" data-aos="fade-up" data-aos-delay="400">
+          <img loading="lazy" src="https://i.imgur.com/HqfDkYk.jpeg" alt="Pai e filha em devocional" class="w-full h-full object-cover aspect-[3/4]">
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Depoimentos -->
   <section id="depoimentos" class="py-16 bg-gradient-to-b from-emerald-50 to-amber-50">
     <div class="container mx-auto px-4">
-      <div class="text-center">
+      <div class="text-center" data-aos="fade-up">
         <div class="text-3xl">💎</div>
         <h2 class="text-2xl md:text-3xl font-extrabold mt-2">DEPOIMENTOS REAIS</h2>
         <p class="text-zinc-600 mt-1">Veja como outras mães estão transformando o dia a dia da família</p>
       </div>
       <div class="grid md:grid-cols-3 gap-6 mt-8">
-        <div class="p-6 bg-white border border-zinc-100 rounded-2xl card">
+        <div class="p-6 bg-white border border-zinc-100 rounded-2xl card" data-aos="fade-up" data-aos-delay="100">
           <div class="flex items-center gap-3">
             <img loading="lazy" class="w-10 h-10 rounded-full" src="https://i.imgur.com/qzy2KVS.png" alt="Juliana"/>
             <div>
@@ -217,7 +308,7 @@
           </div>
           <p class="text-sm text-zinc-700 mt-3">“Só de 5 a 7 minutos por dia e já sentimos mais paz em casa. Meus filhos pedem para escolher o próximo card!”</p>
         </div>
-        <div class="p-6 bg-white border border-zinc-100 rounded-2xl card">
+        <div class="p-6 bg-white border border-zinc-100 rounded-2xl card" data-aos="fade-up" data-aos-delay="200">
           <div class="flex items-center gap-3">
             <img loading="lazy" class="w-10 h-10 rounded-full" src="https://i.imgur.com/EmDogNU.png" alt="Fernanda"/>
             <div>
@@ -227,7 +318,7 @@
           </div>
           <p class="text-sm text-zinc-700 mt-3">“Meu devocional com as crianças voltou a acontecer todos os dias. O material é lindo!”</p>
         </div>
-        <div class="p-6 bg-white border border-zinc-100 rounded-2xl card">
+        <div class="p-6 bg-white border border-zinc-100 rounded-2xl card" data-aos="fade-up" data-aos-delay="300">
           <div class="flex items-center gap-3">
             <img loading="lazy" class="w-10 h-10 rounded-full" src="https://i.imgur.com/5c5PkPq.png" alt="Pricila"/>
             <div>
@@ -238,19 +329,17 @@
           <p class="text-sm text-zinc-700 mt-3">“Ajudou demais a criar conversa sobre valores. É simples, bonito e direto.”</p>
         </div>
       </div>
-      <div class="mt-8 text-center text-sm text-zinc-600">⭐ <span class="font-semibold">5.0</span> — Mais de <span class="font-semibold">1.200 famílias</span> já adotaram as sementes diárias</div>
     </div>
   </section>
 
-  <!-- FAQ -->
   <section id="faq" class="py-16">
     <div class="container mx-auto px-4">
-      <div class="text-center">
+      <div class="text-center" data-aos="fade-up">
         <div class="text-2xl">❓</div>
         <h2 class="text-2xl md:text-3xl font-extrabold">PERGUNTAS FREQUENTES</h2>
         <p class="text-zinc-600 mt-1">Tire suas dúvidas sobre as Sementes Diárias</p>
       </div>
-      <div class="mt-8 max-w-3xl mx-auto space-y-3">
+      <div class="mt-8 max-w-3xl mx-auto space-y-3" data-aos="fade-up" data-aos-delay="100">
         <details class="group bg-white border border-zinc-100 rounded-xl p-4 card">
           <summary class="font-semibold cursor-pointer flex items-center justify-between">
             É só para mães cristãs? <span class="text-zinc-400 group-open:rotate-180 transition">⌄</span>
@@ -282,16 +371,11 @@
           <p class="mt-2 text-sm text-zinc-600">Sim! Um mesmo momento vale para irmãos de idades diferentes.</p>
         </details>
       </div>
-      <div class="text-center mt-8">
-        <!-- BOTÃO VERDE 3 -->
-        <a href="https://pay.kiwify.com.br/vem2DJn" target="_blank" rel="noopener" aria-label="Ir para a oferta" class="px-5 py-3 rounded-xl bg-[var(--brand)] text-white font-semibold soft">🌱 Começar agora</a>
-      </div>
     </div>
   </section>
 
-  <!-- Garantia -->
   <section id="garantia" class="py-20 grad">
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-4" data-aos="zoom-in">
       <div class="bg-white rounded-3xl p-8 md:p-10 max-w-3xl mx-auto card border border-white/30 text-center">
         <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 grid place-items-center mx-auto">🛡️</div>
         <h3 class="text-xl md:text-2xl font-extrabold mt-3">GARANTIA INCONDICIONAL DE 7 DIAS</h3>
@@ -299,142 +383,108 @@
           Experimente SEMENTES DIÁRIAS por 7 dias. Se você sentir que o momento não fluiu de conexão,
           eu devolvo <strong>100% do seu investimento</strong>. Sem perguntas.
         </p>
-        <div class="grid md:grid-cols-3 gap-4 mt-6 text-sm text-zinc-700">
-          <div class="bg-emerald-50 rounded-xl p-4 border border-emerald-100">📥 <span class="font-semibold">Download imediato</span><div class="text-zinc-600">Arquivos liberados na hora</div></div>
-          <div class="bg-emerald-50 rounded-xl p-4 border border-emerald-100">📦 <span class="font-semibold">Pacote completo</span><div class="text-zinc-600">Cards • Caixa • Guia</div></div>
-          <div class="bg-emerald-50 rounded-xl p-4 border border-emerald-100">🔄 <span class="font-semibold">Atualizações grátis</span><div class="text-zinc-600">Sem custo extra</div></div>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- Oferta -->
   <section id="oferta" class="py-16">
     <div class="container mx-auto px-4">
-      <div class="text-center">
+      <div class="text-center" data-aos="fade-up">
         <h3 class="text-xl md:text-2xl font-extrabold">OFERTA DE LANÇAMENTO</h3>
         <p class="text-zinc-600 mt-1">Plante hoje. Colha para sempre.</p>
       </div>
-
-      <div class="max-w-2xl mx-auto mt-8 bg-white rounded-3xl border border-zinc-100 card overflow-hidden">
-        <!-- Faixa preço -->
+      <div class="max-w-2xl mx-auto mt-8 bg-white rounded-3xl border border-zinc-100 card overflow-hidden" data-aos="zoom-in-up" data-aos-delay="200">
         <div class="price-grad text-white px-6 py-6">
           <div class="text-sm opacity-90 line-through">R$ 37,00</div>
           <div class="text-3xl md:text-4xl font-extrabold">R$ 13,90</div>
           <div class="text-xs opacity-90">ou 2x de R$ 6,95 no cartão</div>
           <div class="mt-1 text-[11px] bg-white/20 inline-flex px-2 py-1 rounded">81% de desconto • Por tempo limitado</div>
         </div>
-
-        <!-- Formulário (mock) -->
         <div class="p-6">
-          <div class="grid md:grid-cols-2 gap-4">
-            <label class="text-sm">Nome completo
-              <input class="mt-1 w-full rounded-xl border border-zinc-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-200" placeholder="Seu nome"/>
-            </label>
-            <label class="text-sm">Email
-              <input class="mt-1 w-full rounded-xl border border-zinc-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-200" placeholder="seu@email.com"/>
-            </label>
-            <label class="text-sm">WhatsApp
-              <input class="mt-1 w-full rounded-xl border border-zinc-200 px-3 py-2" placeholder="(00) 00000-0000"/>
-            </label>
-            <label class="text-sm">Idade do filho
-              <input class="mt-1 w-full rounded-xl border border-zinc-200 px-3 py-2" placeholder="Ex.: 7 anos"/>
-            </label>
-            <label class="text-sm md:col-span-2">Deixe uma mensagem (opcional)
-              <textarea class="mt-1 w-full rounded-xl border border-zinc-200 px-3 py-2" rows="3" placeholder="Compartilhe algo sobre sua família"></textarea>
-            </label>
-          </div>
-
-          <!-- BOTÃO VERDE 4 -->
-          <a href="https://pay.kiwify.com.br/vem2DJn" target="_blank" rel="noopener" aria-label="Ir para pagamento" class="mt-6 inline-flex w-full items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[var(--brand)] text-white font-semibold soft">
+          <a href="https://pay.kiwify.com.br/vem2DJn" target="_blank" rel="noopener" aria-label="Ir para pagamento" class="inline-flex w-full items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[var(--brand)] text-white font-semibold soft">
             🌱 Começar agora
           </a>
           <div class="text-[12px] text-zinc-500 mt-3 text-center">Pagamento seguro • Acesso imediato • 7 dias de garantia</div>
         </div>
       </div>
-
-      <div class="text-center text-sm text-zinc-600 mt-6">⭐ <span class="font-semibold">5.0</span> de avaliação • Mais de <span class="font-semibold">1.200 famílias</span></div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer-grad text-zinc-300">
-    <div class="container mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
-      <div>
-        <h4 class="text-white font-bold">Sementes Diárias</h4>
-        <p class="text-sm mt-2 text-zinc-400">
-          Um pequeno momento diário, com propósito e afeto, pode transformar a atmosfera do lar. Tão simples, tão poderoso.
-        </p>
-        <div class="flex items-center gap-3 mt-3 text-xl">
-          <a href="#" aria-label="Instagram">📸</a>
-          <a href="#" aria-label="WhatsApp">💬</a>
-          <a href="#" aria-label="Email">✉️</a>
-        </div>
-      </div>
-      <div>
-        <h4 class="text-white font-semibold">Links Rápidos</h4>
-        <ul class="mt-3 space-y-2 text-sm">
-          <li><a class="hover:text-white" href="#depoimentos">Depoimentos</a></li>
-          <li><a class="hover:text-white" href="#faq">Perguntas</a></li>
-          <li><a class="hover:text-white" href="#oferta">Comprar</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-white font-semibold">Suporte</h4>
-        <ul class="mt-3 space-y-2 text-sm">
-          <li><a class="hover:text-white" href="#garantia">Garantia 7 dias</a></li>
-          <li><a class="hover:text-white" href="#">Política de Privacidade</a></li>
-          <li><a class="hover:text-white" href="#">Termos de Uso</a></li>
-        </ul>
-      </div>
-      <div class="text-sm flex flex-col justify-end md:items-end">
-        <div>© <span id="y"></span> Sementes Diárias. Todos os direitos reservados.</div>
+    <div class="container mx-auto px-4 py-12">
+      <div class="text-center text-sm text-zinc-400">
+        © <span id="y"></span> Sementes Diárias. Todos os direitos reservados.
       </div>
     </div>
   </footer>
 
-  <!-- CTA fixo mobile -->
-  <!-- BOTÃO VERDE 5 -->
   <a href="https://pay.kiwify.com.br/vem2DJn" target="_blank" rel="noopener" aria-label="Ir para a oferta" class="cta-mobile px-5 py-3 bg-[var(--brand)] text-white text-center font-semibold">
     🌱 Começar agora
   </a>
 
-  <!-- FAQ Schema (rich snippet) -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "É só para mães cristãs?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Foi criado com base bíblica, mas qualquer família que deseje cultivar valores pode usar." }
-      },
-      {
-        "@type": "Question",
-        "name": "É físico ou digital?",
-        "acceptedAnswer": { "@type": "Answer", "text": "É digital (PDF). Você imprime em casa ou gráfica quando quiser." }
-      },
-      {
-        "@type": "Question",
-        "name": "E se eu não souber conduzir?",
-        "acceptedAnswer": { "@type": "Answer", "text": "O Guia da Mãe Intencional traz um roteiro simples para você conduzir em 5 minutos." }
-      },
-      {
-        "@type": "Question",
-        "name": "Como funciona na prática?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Você escolhe 1 card por dia, lê a oração e o versículo, e conversa 2–3 minutos com seu filho." }
-      },
-      {
-        "@type": "Question",
-        "name": "Posso usar com mais de um filho?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Sim! Um mesmo momento vale para irmãos de idades diferentes." }
-      }
+      { "@type": "Question", "name": "É só para mães cristãs?", "acceptedAnswer": { "@type": "Answer", "text": "Foi criado com base bíblica, mas qualquer família que deseje cultivar valores pode usar." }},
+      { "@type": "Question", "name": "É físico ou digital?", "acceptedAnswer": { "@type": "Answer", "text": "É digital (PDF). Você imprime em casa ou gráfica quando quiser." }},
+      { "@type": "Question", "name": "E se eu não souber conduzir?", "acceptedAnswer": { "@type": "Answer", "text": "O Guia da Mãe Intencional traz um roteiro simples para você conduzir em 5 minutos." }},
+      { "@type": "Question", "name": "Como funciona na prática?", "acceptedAnswer": { "@type": "Answer", "text": "Você escolhe 1 card por dia, lê a oração e o versículo, e conversa 2–3 minutos com seu filho." }},
+      { "@type": "Question", "name": "Posso usar com mais de um filho?", "acceptedAnswer": { "@type": "Answer", "text": "Sim! Um mesmo momento vale para irmãos de idades diferentes." }}
     ]
   }
   </script>
 
   <script>
+    // Inicializa a biblioteca de animações
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+
+    // Script do contador animado
+    document.addEventListener('DOMContentLoaded', () => {
+      const counterElement = document.getElementById('counter');
+      const counterContainer = document.getElementById('counter-container');
+      const targetNumber = 1200;
+      const duration = 2000;
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+              if (!startTimestamp) startTimestamp = timestamp;
+              const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+              const currentValue = Math.floor(progress * targetNumber);
+              counterElement.textContent = currentValue.toLocaleString('pt-BR');
+              if (progress < 1) {
+                window.requestAnimationFrame(step);
+              } else {
+                counterElement.textContent = targetNumber.toLocaleString('pt-BR');
+              }
+            };
+            window.requestAnimationFrame(step);
+            observer.unobserve(counterContainer);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      if (counterContainer) {
+        observer.observe(counterContainer);
+      }
+      
+      // Script para virar o card
+      const flipCard = document.querySelector('.flip-card');
+      if (flipCard) {
+        flipCard.addEventListener('click', function() {
+          this.classList.toggle('is-flipped');
+        });
+      }
+    });
+
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
