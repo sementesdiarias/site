@@ -160,11 +160,11 @@
           </a>
         </div>
 
-        <div class="mt-6 inline-flex items-center gap-3 rounded-2xl border border-emerald-200/50 bg-emerald-50/80 p-3 pr-4 shadow-sm backdrop-blur-sm" data-aos="fade-up" data-aos-delay="500">
-          <div class="flex-shrink-0 grid h-10 w-10 place-items-center rounded-full bg-white shadow">
-            <svg class="h-6 w-6 text-[var(--brand)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.802H9.528a3.375 3.375 0 00-3.285 2.802l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008zm-3 0h.008v.008h-.008v-.008z" />
-            </svg>
+        <div class="mt-6 inline-flex items-center gap-4 rounded-2xl border border-emerald-200/50 bg-emerald-50/80 p-3 pr-5 shadow-sm backdrop-blur-sm" data-aos="fade-up" data-aos-delay="500">
+          <div class="flex flex-shrink-0 -space-x-3">
+            <img class="h-10 w-10 rounded-full border-2 border-white object-cover" src="https://i.imgur.com/qzy2KVS.png" alt="Mãe feliz">
+            <img class="h-10 w-10 rounded-full border-2 border-white object-cover" src="https://i.imgur.com/EmDogNU.png" alt="Mulher sorrindo">
+            <img class="h-10 w-10 rounded-full border-2 border-white object-cover" src="https://i.imgur.com/5c5PkPq.png" alt="Mãe com criança">
           </div>
           <p class="text-sm text-emerald-900 leading-tight">
             Junte-se às <strong>primeiras famílias</strong> a transformar sua rotina com as Sementes Diárias.
@@ -467,39 +467,7 @@
       once: true,
     });
 
-    // Script do contador animado
     document.addEventListener('DOMContentLoaded', () => {
-      const counterContainer = document.getElementById('counter-container');
-      
-      if (counterContainer) {
-        const counterElement = document.getElementById('counter');
-        const targetNumber = 1200;
-        const duration = 2000;
-
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              let startTimestamp = null;
-              const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const currentValue = Math.floor(progress * targetNumber);
-                counterElement.textContent = currentValue.toLocaleString('pt-BR');
-                if (progress < 1) {
-                  window.requestAnimationFrame(step);
-                } else {
-                  counterElement.textContent = targetNumber.toLocaleString('pt-BR');
-                }
-              };
-              window.requestAnimationFrame(step);
-              observer.unobserve(counterContainer);
-            }
-          });
-        }, { threshold: 0.5 });
-        
-        observer.observe(counterContainer);
-      }
-      
       // Script para virar o card
       const flipCard = document.querySelector('.flip-card');
       if (flipCard) {
